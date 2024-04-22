@@ -1,0 +1,10 @@
+print('hello from git, i to pratic to code')
+
+def message(msg):
+  print('hello my name is olavo, this is pratic in the git')
+
+
+theMsg = message()
+
+
+prin(theMsg)
