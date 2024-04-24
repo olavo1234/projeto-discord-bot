@@ -1,2 +1,4 @@
-seu email:
-sua senha:
+Digite seu email:
+Digite sua senha:
+Digite sua idade:
+Digite seu cpf:
