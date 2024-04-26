@@ -3,6 +3,8 @@ import dadosBot
 import inicialConfig
 import requests
 import asyncio
+from sys import platform
+
 
 
 @inicialConfig.bot.event
@@ -69,16 +71,18 @@ async def python_interpreter(ctx, *expression):
 
 
 
-
-# @inicialConfig.bot.command(name='verificar')
-# async def python_interpreter(ctx):
-#     if platform == 'win32':
-#         await ctx.send('Sistema Operacional: Windows')
-#     elif platform == 'linux':
-#         await ctx.send('Sistema Operacional: Linux')
-#     else:
-#         await ctx.send('Um Sistemas Operacional diferente de Windows e Linux')
-
+@inicialConfig.bot.command(name='verificarLocalBot')
+async def verificar_os(ctx):
+    
+    windows = 'wind32'
+    linux = 'linux'
+     
+    if platform == windows:
+         await ctx.send('O Usuário está no Sistema Operacional: Windows')
+    elif platform == linux:
+         await ctx.send('O Usuário está no Sistema Operacional: Linux')
+    else:
+         await ctx.send('O Usuário está em um Sistemas Operacional diferente de Windows e Linux')
 
 
 
