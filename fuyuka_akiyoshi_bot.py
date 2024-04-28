@@ -177,6 +177,3 @@ async def varia_bitcoin_control(ctx, command_user):
     except Exception as e:
         await ctx.send(f'<{e}> Tente Novamente!')
 
-
-# o método run usara o token do bot como parâmetro
-inicialConfig.bot.run('MTIxODk4NzMwNjYzMjA4OTcwMg.Gku2JU.tthyfwBHdcXQxGmrJUhWgoIhU-75x4BFRRAwIk')
