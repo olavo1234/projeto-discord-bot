@@ -76,13 +76,13 @@ async def verificar_os(ctx):
     
     windows = 'wind32'
     linux = 'linux'
-     
+    
     if platform == windows:
-         await ctx.send('O Usuário está no Sistema Operacional: Windows')
+        await ctx.send('O Usuário está no Sistema Operacional: Windows')
     elif platform == linux:
-         await ctx.send('O Usuário está no Sistema Operacional: Linux')
+        await ctx.send('O Usuário está no Sistema Operacional: Linux')
     else:
-         await ctx.send('O Usuário está em um Sistemas Operacional diferente de Windows e Linux')
+        await ctx.send('O Usuário está em um Sistemas Operacional diferente de Windows e Linux')
 
 
 
