@@ -179,4 +179,4 @@ async def varia_bitcoin_control(ctx, command_user):
 
 
 # o método run usara o token do bot como parâmetro
-inicialConfig.bot.run('MTIxODk4NzMwNjYzMjA4OTcwMg.Gku2JU.tthyfwBHdcXQxGmrJUhWgoIhU-75x4BFRRAwIk')
+inicialConfig.bot.run(inicialConfig.TOKEN_DISCORD)

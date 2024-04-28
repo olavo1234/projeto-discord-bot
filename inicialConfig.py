@@ -1,7 +1,10 @@
+import os
 import datetime
 # exportação biblioteca/framework discord
 import discord
 from discord.ext import commands, tasks
+
+TOKEN_DISCORD = os.getenv('token_bot_discord')
 
 
 
