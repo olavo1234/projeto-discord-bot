@@ -178,5 +178,73 @@ async def varia_bitcoin_control(ctx, command_user):
         await ctx.send(f'<{e}> Tente Novamente!')
 
 
+@inicialConfig.bot.command(name='segredo')
+async def secret(ctx):
+    try:
+        await ctx.author.send('200pp vem nunca??')
+    except inicialConfig.discord.errors.Forbidden:
+        await ctx.send(
+            'Por favor ative as mensagens diretas dos membros do servidor em:'
+            '\nConfiguraçães de Usuários > Privacidade e segurança >' 
+            ' Permitir mensagens diretas de membros do servidor'
+        )
+
+
+@inicialConfig.bot.event
+async def on_reaction_add(reaction, user):
+    # pegar os id do cargo e salvar em uma variavel
+    role_happy = user.guild.get_role(1236336602221903882)
+    role_bad = user.guild.get_role(1236336701224259655)
+
+    if reaction.emoji == '👍':
+        # add e remove para adicionar esse cargo
+        await user.add_roles(role_happy)
+        await user.remove_roles(role_bad)
+    elif reaction.emoji == '💩':
+        await user.add_roles(role_bad)
+        await user.remove_roles(role_happy)
+
+
+@inicialConfig.bot.command(name='image')
+async def get_random_image(ctx):
+    url_image = "https://picsum.photos/1920/1080" 
+    
+    embed_image = inicialConfig.discord.Embed(
+        title="Resultado da busca da imagem",
+        description="Essa busca é totalmente aleatória",
+        color=0x0000ff
+    )
+
+    embed_image.set_author(
+        name=inicialConfig.bot.user.name,
+        icon_url=inicialConfig.bot.user.avatar
+    )
+
+    embed_image.set_footer(
+        text="Feito por " + inicialConfig.bot.user.name,
+        icon_url=inicialConfig.bot.user.avatar
+    )
+
+    embed_image.set_image(url=url_image)
+
+    embed_image.add_field(
+        name="API", 
+        value="API usada: https://picsum.photos"
+    )
+
+    embed_image.add_field(
+        name="Parâmetros",
+        value="{largura}/{altura}"
+    )
+
+    embed_image.add_field(
+        name="Exemplo: ",
+        value=url_image,
+        inline=False
+    )
+
+    await ctx.send(embed=embed_image)
+
+
 # o método run usara o token do bot como parâmetro
-inicialConfig.bot.run(inicialConfig.TOKEN_DISCORD)
+inicialConfig.bot.run(inicialConfig.TOKEN_DISCORD_BOT)

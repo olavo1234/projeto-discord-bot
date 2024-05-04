@@ -4,7 +4,7 @@ import datetime
 import discord
 from discord.ext import commands, tasks
 
-TOKEN_DISCORD = os.getenv('token_bot_discord')
+TOKEN_DISCORD_BOT = os.getenv('token_bot_discord')
 
 
 
