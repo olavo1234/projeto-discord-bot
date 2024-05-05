@@ -5,6 +5,8 @@ states_BTC_price = list()
 pilha = list()
 
 
+ID_USER = 953750556625739826
+
 server_channel_mapping = {
     'ozu': 964952312307142749,
 }

@@ -7,7 +7,6 @@ from discord.ext import commands, tasks
 TOKEN_DISCORD_BOT = os.getenv('token_bot_discord')
 
 
-
 # deixar as intenção de mensagem padrão
 intents = discord.Intents.default()
 intents.messages = True # Habilita a intenção de mensagens para receber eventos de mensagem

@@ -4,7 +4,7 @@ import inicialConfig
 import requests
 import asyncio
 from sys import platform
-
+from discord.ext.commands.errors import MissingRequiredArgument, CommandNotFound
 
 
 @inicialConfig.bot.event
@@ -12,6 +12,16 @@ from sys import platform
 async def on_ready():
     print(f'{inicialConfig.bot.user} está conectado!')
     # current_time.start()
+
+
+@inicialConfig.bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, MissingRequiredArgument):
+        await ctx.send('Favor enviar todos os Argumentos, mais duvidas comsulte "!?help"')
+    elif isinstance(error, CommandNotFound):
+        await ctx.send('O comando não existe, mais duvidas comsulte "!?help"')
+    else:
+        raise error
 
 
 @inicialConfig.bot.event
@@ -193,8 +203,8 @@ async def secret(ctx):
 @inicialConfig.bot.event
 async def on_reaction_add(reaction, user):
     # pegar os id do cargo e salvar em uma variavel
-    role_happy = user.guild.get_role(1236336602221903882)
-    role_bad = user.guild.get_role(1236336701224259655)
+    role_happy = user.guild.get_role(1236433934515044382)
+    role_bad = user.guild.get_role(1236434116140990654)
 
     if reaction.emoji == '👍':
         # add e remove para adicionar esse cargo
@@ -244,6 +254,104 @@ async def get_random_image(ctx):
     )
 
     await ctx.send(embed=embed_image)
+
+
+@inicialConfig.bot.command(name="nameDev")
+async def get_name_dev(ctx):
+
+    dev = await inicialConfig.bot.fetch_user(dadosBot.ID_USER)
+
+    if dev is not None:
+        await ctx.send(dev.name)
+        await ctx.send(dev.avatar)
+    else:
+        print('Usuário não encontrado')
+
+
+@inicialConfig.bot.command(name="?help")
+async def help(ctx):
+
+    embed_help_message = inicialConfig.discord.Embed(
+        title='O comando "!?help" irá ajudar com um guia abaixo.',
+        description="O Fuyuka Akiyoshi Bot foi criado com o intuito de estudo,"
+        " todos os comando são testes para ver o comportamento do bot.",
+        color=0xadd8e6
+    )
+
+    dev = await inicialConfig.bot.fetch_user(dadosBot.ID_USER)
+    
+    embed_help_message.set_footer(
+        text="Feito por " + dev.name,
+        icon_url=dev.avatar
+    )
+
+    embed_help_message.add_field(
+        name="Comando: /code", 
+        value=
+            "O comando é usado para formatar o código do campo de texto nornal,"
+            " se escreve '!/code' e o bot pedirá a baixo o seu código."
+    )
+
+    embed_help_message.add_field(
+        name="Comando: binance",
+        value="O Comando servirá para ver o valor de um criptmoeda comparado com uma moeda,"
+        " se escreve '!binance' e junto os parâmetros: Coin/Base."
+    )
+
+
+    embed_help_message.add_field(
+        name="Comando: calculate",
+        value="O Comando servirá para calcular um valor sequindo a biblioteca math e os códigos nativos do python,"
+        " se escreve '!calculate ' e os parâmetros communs são +, -, *, /, //, **. Para mais informaçãoes do math: https://docs.python.org/3/library/math.html"
+    )
+
+    embed_help_message.add_field(
+        name="Comando: formPascal", 
+        value=
+            "O comando é usado para formar um triângulo de Pascal,"
+            " se escreve '!formPascal' junto com a base como parâmetro para mais"
+            "informaçãoes: https://jwilson.coe.uga.edu/EMAT6680Su12/Berryman/6690/BerrymanK-Pascals/BerrymanK-Pascals.html"
+    )
+
+    embed_help_message.add_field(
+        name="Comando: help", 
+        value=
+            "Além do comando '!?help' que é mais completo o '!help' é uma versão padrão que irá mostrar mensagens simples"
+    )
+
+    embed_help_message.add_field(
+        name="Comando: image", 
+        value=
+            "O comando '!image' irá exibir em uma embed imagens aleatórias."
+    )
+
+    embed_help_message.add_field(
+        name="Comando: nameDev", 
+        value=
+            "O comando '!nameDev' irá exibir em o nome e o avatar do desenvolvedor do bot."
+    )
+
+    embed_help_message.add_field(
+        name="Comando: segredo", 
+        value=
+            "O comando '!segredo 'enviará um mensagem no privado de quem utilizar o comando."
+    )
+
+    embed_help_message.add_field(
+        name="Comando: variaçãoBitcoin", 
+        value=
+            "O comando '!variaçãoBitcoin' irá utilizar ficar verificando o preço Bitcoin, e irá ficar retornado em um loop esses valores."
+            "Além disso terá o '!variaçãoBitcoin start' para começar o loop e '!variaçãoBitcoin stop' para parar o loop, e no final"
+            "irá exibir o peço inicial da bitcoin e o preço final após a parada."
+    )
+
+    embed_help_message.add_field(
+        name="Comando: verificarLocalBot", 
+        value=
+            "O comando '!verificarLocalBot' enviará um mensagem mostrando o Sistema Operacional local de onde o código do bot está sendo rodado. "
+    )
+
+    await ctx.send(embed=embed_help_message)
 
 
 # o método run usara o token do bot como parâmetro
