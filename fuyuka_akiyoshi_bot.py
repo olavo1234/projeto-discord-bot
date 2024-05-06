@@ -45,7 +45,7 @@ async def on_message(message):
 
 bot_context = dadosBot.BotContext()
 
-@inicialConfig.bot.command(name='/code')
+@inicialConfig.bot.command(name='/code', help="Irá formatar um texto da caixa normal em código")
 async def my_command(ctx):
     if ctx.author == inicialConfig.bot.user:
         return
@@ -73,7 +73,7 @@ async def current_time():
                 break
 
 
-@inicialConfig.bot.command(name='calculate')
+@inicialConfig.bot.command(name='calculate', help="Vai usar o ambiente python para gerar resultados matemáticos")
 async def python_interpreter(ctx, *expression):
     format_expression = ''.join(expression)
     result = eval(format_expression)
@@ -81,7 +81,7 @@ async def python_interpreter(ctx, *expression):
 
 
 
-@inicialConfig.bot.command(name='verificarLocalBot')
+@inicialConfig.bot.command(name='verificarLocalBot', help="Verificar o OS local de onde o código é rodado")
 async def verificar_os(ctx):
     
     windows = 'wind32'
@@ -97,7 +97,7 @@ async def verificar_os(ctx):
 
 
 # estudar ponteiros 
-@inicialConfig.bot.command(name='formPascal')
+@inicialConfig.bot.command(name='formPascal', help="Formar um triângulo pascal pela sua base")
 async def pascalTriangle(ctx, num: int):
 
     def combination(n, k):
@@ -121,7 +121,7 @@ async def pascalTriangle(ctx, num: int):
 
 
 
-@inicialConfig.bot.command()
+@inicialConfig.bot.command(help="Mostrar a relação de uma criptomoeda pela base, Coin/Base")
 async def binance(ctx, coin, base):
     
     try:
@@ -162,7 +162,7 @@ async def current_time_varia_bitcoin():
         await channel.send(f'<{e}> Tente Novamente!')
 
 
-@inicialConfig.bot.command(name='variaçãoBitcoin')
+@inicialConfig.bot.command(name='variaçãoBitcoin', help="monstra a variação do Bitcoin")
 async def varia_bitcoin_control(ctx, command_user):
 
     try:
@@ -188,7 +188,7 @@ async def varia_bitcoin_control(ctx, command_user):
         await ctx.send(f'<{e}> Tente Novamente!')
 
 
-@inicialConfig.bot.command(name='segredo')
+@inicialConfig.bot.command(name='segredo', help="Emvia uma mensagem no privado")
 async def secret(ctx):
     try:
         await ctx.author.send('200pp vem nunca??')
@@ -215,7 +215,7 @@ async def on_reaction_add(reaction, user):
         await user.remove_roles(role_happy)
 
 
-@inicialConfig.bot.command(name='image')
+@inicialConfig.bot.command(name='image', help="irá emviar embed com imagens aleatórias")
 async def get_random_image(ctx):
     url_image = "https://picsum.photos/1920/1080" 
     
@@ -256,7 +256,7 @@ async def get_random_image(ctx):
     await ctx.send(embed=embed_image)
 
 
-@inicialConfig.bot.command(name="nameDev")
+@inicialConfig.bot.command(name="nameDev", help="Vai pegar o nome do desenvolvedor")
 async def get_name_dev(ctx):
 
     dev = await inicialConfig.bot.fetch_user(dadosBot.ID_USER)
@@ -268,7 +268,7 @@ async def get_name_dev(ctx):
         print('Usuário não encontrado')
 
 
-@inicialConfig.bot.command(name="?help")
+@inicialConfig.bot.command(name="?help", help="Um guia mais detalhado dos comandos")
 async def help(ctx):
 
     embed_help_message = inicialConfig.discord.Embed(
