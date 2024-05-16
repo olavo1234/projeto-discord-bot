@@ -58,7 +58,7 @@ async def current_time():
             channel_id = dadosBot.server_channel_mapping[guild.name]
             channel = inicialConfig.bot.get_channel(channel_id)
             if channel:
-                await channel.send('Data atual: ' + now)
+                #await channel.send('Data atual: ' + now)
                 print(f"Enviado para o canal no servidor '{guild.name}'.")
                 break
 
@@ -145,11 +145,12 @@ async def current_time_varia_bitcoin():
                     if price:
                         formatted_price = dadosBot.formatação(price)
                         dadosBot.pilha.append(formatted_price)
-                        await channel.send(f'Preço atual do Bitcoin: ${formatted_price}')
+                        #await channel.send(f'Preço atual do Bitcoin: ${formatted_price}')
                         print(f"Enviado para o canal no servidor '{guild.name}'.")
                     break
     except Exception as e:
-        await channel.send(f'<{e}> Tente Novamente!')
+        pass
+#        await channel.send(f'<{e}> Tente Novamente!')
 
 
 @inicialConfig.bot.command(name='variaçãoBitcoin')
